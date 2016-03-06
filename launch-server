@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo chmod +w /dev/uinput && ./server.py
