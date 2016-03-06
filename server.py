@@ -1,10 +1,23 @@
 #!/usr/bin/python
 
-class SpacebarDevice(object):
+class NetflixDevice(object):
     def __init__(self):
-        self._device = uinput.Device([uinput.KEY_SPACE])
-    def send_pause(self):
+        self._device = uinput.Device([uinput.KEY_SPACE,
+                                      uinput.KEY_LEFT,
+                                      uinput.KEY_RIGHT,
+                                      uinput.KEY_LEFTSHIFT])
+    def toggle_pause(self):
         self._device.emit_click(uinput.KEY_SPACE)
+
+    def rewind(self):
+        self._device.emit_combo([uinput.KEY_LEFTSHIFT,
+                                 uinput.KEY_LEFT])
+
+    def fast_forward(self):
+        self._device.emit_combo([uinput.KEY_LEFTSHIFT,
+                                 uinput.KEY_RIGHT])
+        
+        
 
 touchmouse_port = 4026
 
@@ -27,12 +40,16 @@ tcp_socket.listen(1)
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 udp_socket.bind(("", touchmouse_port))
 
-spacebar = SpacebarDevice()
+netflix = NetflixDevice()
 while 1:
     data, addr = udp_socket.recvfrom(8)
     data = map(ord, data) # bytes->integer codes
 
     if data[3] == 13: # keyboard code
-        if 'a' < chr(data[7]) < 'z':
-            spacebar.send_pause()
-        
+        qq = chr(data[7])
+        if  qq in "qwaszxedc":
+            netflix.rewind()
+        elif qq in "rfvtgbyhn":
+            netflix.toggle_pause()
+        elif qq in "ujmikolp":
+            netflix.fast_forward()
