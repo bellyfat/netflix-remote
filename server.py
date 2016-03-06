@@ -17,7 +17,6 @@ class NetflixDevice(object):
         self._device.emit_combo([uinput.KEY_LEFTSHIFT,
                                  uinput.KEY_RIGHT])
         
-        
 
 touchmouse_port = 4026
 
@@ -26,6 +25,14 @@ touchmouse_port = 4026
 # pip install python-uinput
 
 import socket, uinput
+
+def publish_service(port):
+    import os
+    if os.fork() == 0:
+        os.execl("/usr/bin/avahi-publish", "avahi-publish",
+                 "-s", socket.gethostname(),
+                 "_iTouch._tcp", str(port))
+publish_service(touchmouse_port)
 
 # The app looks for an open listening TCP socket on port 4026
 tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
