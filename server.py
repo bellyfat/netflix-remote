@@ -7,6 +7,7 @@ import uinput
 class NetflixDevice(object):    
     def __init__(self):
         self._device = uinput.Device([uinput.KEY_SPACE,
+                                      uinput.KEY_F,
                                       uinput.KEY_LEFT,
                                       uinput.KEY_RIGHT,
                                       uinput.KEY_LEFTSHIFT])
@@ -20,6 +21,9 @@ class NetflixDevice(object):
     def fast_forward(self):
         self._device.emit_combo([uinput.KEY_LEFTSHIFT,
                                  uinput.KEY_RIGHT])
+
+    def fullscreen(self):
+        self._device.emit_click(uinput.KEY_F)
         
 import socket
 class TouchmouseServer(object):
@@ -72,6 +76,8 @@ if __name__ == "__main__":
                 netflix.toggle_pause()
             elif qq in "ujmikolp":
                 netflix.fast_forward()
+            elif qq in " ":
+                netflix.fullscreen()
 
     server = TouchmouseServer()
     server.event_loop(netflix_handler)
