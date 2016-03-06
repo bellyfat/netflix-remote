@@ -32,9 +32,13 @@ You need `sudo` permissions to send input events to `/dev/uinput`.
 
 ### Use the app
 
-On the TouchMouse app, bring up the keyboard. Tap on the left side of
-the keyboard to rewind a little. Tap in the middle to pause. Tap on
-the right side to fast-forward. Press space to toggle fullscreen.
+On the TouchMouse app, bring up the keyboard.
+
+* Tap on the left side of the keyboard to rewind a little.
+* Tap in the middle to pause.
+* Tap on the right side to fast-forward.
+* Press space to toggle fullscreen.
+* Press any number `0-9` to close the browser tab.
 
 ### Launch Netflix from your laptop
 
