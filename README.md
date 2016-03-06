@@ -11,6 +11,10 @@ corresponding to Netflix keyboard shortcuts.
 The implementation is tiny. You can adapt it for own
 remote-controlling needs.
 
+I wrote a [blog
+post](http://kshitijl.github.io/intro/2016/02/18/remote/) about how I
+made this work.
+
 ### Installation
 
 On your Linux machine:
@@ -46,8 +50,12 @@ To start Netflix over `ssh` on the main monitor:
 
     DISPLAY=:0 google-chrome <netflix video url>
 
-credits:
+### Credits
 
 * [Logitech TouchMouse app](https://itunes.apple.com/us/app/touch-mouse/id338237450?mt=8)
 * https://github.com/mycroes/touchmoused for some details of the Logitech TouchMouse protocol
 * https://github.com/tuomasjjrasanen/python-uinput for Python bindings to Linux `uinput`
+
+### License
+
+MIT
